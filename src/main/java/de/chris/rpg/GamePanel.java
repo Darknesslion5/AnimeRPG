@@ -11,6 +11,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int playerY = 100;
     private KeyHandler keyH = new KeyHandler();
     private BufferedImage playerImage;
+    private TileManager tileM = new TileManager();
 
     private Thread gameThread;
 
@@ -75,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
+        tileM.draw(g2);
         g2.drawImage(playerImage, this.playerX, this.playerY, 26, 50, null);
         g2.dispose();
     }
