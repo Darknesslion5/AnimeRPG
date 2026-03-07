@@ -19,6 +19,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         getPlayerImage("fredolin");
+        int[] savedStats = DatabaseManager.loadPlayer("fredolin");
+        if (savedStats != null) {
+            this.playerX = savedStats[0];
+            this.playerY = savedStats[1];
+        }
     }
 
     private void getPlayerImage(String player) {
@@ -59,6 +64,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (keyH.rightPressed) {
             this.playerX += 4;
+        }
+        if (keyH.savePressed) {
+            DatabaseManager.savePlayer("fredolin", this.playerX, this.playerY);
+            keyH.savePressed = false;
         }
     }
 
