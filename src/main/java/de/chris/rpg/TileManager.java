@@ -5,8 +5,8 @@ import java.awt.*;
 import java.io.IOException;
 
 public class TileManager {
-    Tile[] tile;
-    int[][] mapTileNum;
+    private Tile[] tile;
+    private int[][] mapTileNum;
 
     public TileManager() {
         tile = new Tile[10];
@@ -23,6 +23,7 @@ public class TileManager {
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/wall.png"));
+            tile[1].collision = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,5 +71,13 @@ public class TileManager {
                 y+= 64;
             }
         }
+    }
+
+    public Tile[] getTile() {
+        return tile;
+    }
+
+    public int[][] getMapTileNum() {
+        return mapTileNum;
     }
 }

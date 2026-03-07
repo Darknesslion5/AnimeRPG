@@ -14,6 +14,8 @@ public class GamePanel extends JPanel implements Runnable {
     private TileManager tileM = new TileManager();
 
     private Thread gameThread;
+    private CollisionChecker cChecker = new CollisionChecker(tileM);
+
 
     public GamePanel() {
         this.setBackground(Color.BLACK);
@@ -55,16 +57,24 @@ public class GamePanel extends JPanel implements Runnable {
 
     private void update() {
         if (keyH.upPressed) {
-            this.playerY -= 4;
+            if (!cChecker.checkCollision(this.playerX, this.playerY - 4)) {
+                this.playerY -= 4;
+            }
         }
         if (keyH.leftPressed) {
-            this.playerX -= 4;
+            if (!cChecker.checkCollision(this.playerX - 4, this.playerY)) {
+                this.playerX -= 4;
+            }
         }
         if (keyH.downPressed) {
-            this.playerY += 4;
+            if (!cChecker.checkCollision(this.playerX, this.playerY + 4)) {
+                this.playerY += 4;
+            }
         }
         if (keyH.rightPressed) {
-            this.playerX += 4;
+            if (!cChecker.checkCollision(this.playerX + 4, this.playerY)) {
+                this.playerX += 4;
+            }
         }
         if (keyH.savePressed) {
             DatabaseManager.savePlayer("fredolin", this.playerX, this.playerY);
