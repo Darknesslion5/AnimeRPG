@@ -6,7 +6,7 @@ public class GameWindow {
 
     public GameWindow() {
         JFrame frame = new JFrame();
-        frame.setSize(800, 600);
+        frame.setSize(17 * 64, 13 * 64);
         frame.setTitle("AnimeRPG - Level 1");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
